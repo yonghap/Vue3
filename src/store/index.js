@@ -1,49 +1,22 @@
-import {createStore} from "vuex";
-import Repository from '../api/RepositoryFactory'
+import { defineStore } from 'pinia';
+import Repository from '../api/RepositoryFactory';
 
-const PostRepository = Repository.get('posts')
+const locationRepository = Repository().location;
 
-export default createStore({
-	state: {
-		posts: [],
-		korSubCategory: {
-			id: 'test',
-			name: '5'
-		},
-	},
-	getters: {
-		getTest(state) {
-			return state.korSubCategory;
-		}
-	},
-	mutations: {
-		SET_POSTS(state, posts) {
-			state.posts = posts
-		},
-		SET_TEST(state, test) {
-			state.test = test
+export const uselocationStore = defineStore('location', {
+	state: () => {
+		return {
+			currentLocation : null
 		}
 	},
 	actions: {
-		async get_posts({commit}) {
-			const res = await PostRepository.get()
-			const {status, data} = res
-			commit('SET_POSTS', data)
-		},
-		async get_photos({commit}) {
-			const res = await PostRepository.getPhotos()
-			const {status, data} = res;
-			return data;
-		},
-		async get_games({commit}) {
-			const res = await PostRepository.getGameList()
-			const {status, data} = res;
-			return data;
-		},
-		async get_gameDetail({commit}, id) {
-			const res = await PostRepository.getGameDetail(id)
-			const {status, data} = res;
-			return data;
+		async getLocations() {
+			try {
+				const res = await locationRepository.getLocationList()
+				return res;
+			} catch (error) {
+				return error
+			}
 		}
-	}
-});
+	},
+})

@@ -16,17 +16,10 @@
 }
 /* header */
 .header {
-	display:flex;
-	position:absolute;
-	flex-direction:row;
-	align-items:center;
-	justify-content:center;
-	left:0;
-	width:340px;
-	height:100%;
-	border-right:1px solid #ccc;
-	background:#f3f3f3;
+	padding:15px 0;
+	background:#0080cc;
 	text-align:center;
+	color:#fff;
 	z-index:10;
 }
 .logo {

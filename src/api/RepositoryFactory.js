@@ -1,11 +1,9 @@
 import UserRepository from './UserRepository'
 import PostRepository from './PostRepository'
+import LocationAPI from './locationAPI'
 
-const repositories = {
+export default (name) => ({
 	'users' : UserRepository,
-	'posts' : PostRepository
-}
-
-export default {
-	get : name => repositories[name]
-}
+	'posts' : PostRepository,
+	'location' : LocationAPI
+})
