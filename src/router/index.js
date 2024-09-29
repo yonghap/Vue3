@@ -8,7 +8,6 @@ const router = createRouter({
 			path: '/',
 			name: 'home',
 			component: () => import('../views/Main.vue'),
-
 		},
 		{
 			path: '/new',

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import './_partial/_base.scss';
 @import './_partial/_font.scss';
+@import './_partial/_variables.scss';
 
 #app {
 	min-height:100%;
@@ -9,7 +10,6 @@
 .wrap {
 	position:relative;
 	min-height:100%;
-	max-width:1280px;
 	margin:0 auto;
 	font-family:'Pretendard';
 	color:#111;
@@ -22,42 +22,30 @@
 	color:#fff;
 	z-index:10;
 }
-.logo {
-	display:block;
-	font-size:60px;
-}
-.gnb {
-	position:relative;
-	margin-top:20px;
-	&__button {
-		width:180px;
-		height:36px;
-	}
-	&__list {
-		display:none;
-		position:relative;
-		border:1px solid #ccc;
-		border-bottom-left-radius:5px;
-		border-bottom-right-radius:5px;
-		li {
-			font-size:14px;
-			line-height:32px;
-			&:hover {
-				background:#eee;
-			}
-		}
-	}
-}
 /* content */
 .container {
 	padding-left:340px;
 	background:#fff;
 }
 .content {
+	max-width:1000px;
+	margin:0 auto;
 	padding:40px;
 	&--fit {
 		padding:0;
 	}
+}
+.box {
+	& ~ .box {
+		margin-top:30px;
+		padding-top:30px;
+		border-top:1px solid $BORDER_LIGHT;
+	}
+}
+/* component */
+button {
+	font-family:inherit;
+	cursor:pointer;
 }
 .title {
 	margin-bottom:24px;

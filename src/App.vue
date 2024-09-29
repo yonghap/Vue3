@@ -1,10 +1,9 @@
 <template>
-	<div id="app">
+	<div class="wrap">
 		<component :is="route.meta.layout || 'div'">
 			<TheHeader></TheHeader>
 			<router-view/>
 		</component>
-		<hr>
 	</div>
 </template>
 
