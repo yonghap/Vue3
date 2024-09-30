@@ -14,6 +14,4 @@
 <script setup>
 import Areas from "@/components/forms/Areas.vue"
 import List from "@/components/Elements/List.vue"
-
-
 </script>

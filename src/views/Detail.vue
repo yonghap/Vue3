@@ -1,63 +1,90 @@
 <template>
-  <div class="content content--fit">
-    <section class="sub sub--fit" v-if="detailData">
-      <article class="sub__intro">
-        <img :src="detailData.response.body.items.item[0].firstimage">
-      </article>
-      <div class="row">
-        <!-- 상세 -->
-        <div class="detail">
-          <div class="detail__meta">
-            <h2 class="detail__title">
-              {{ detailData.response.body.items.item[0].title }}
-            </h2>
-            <div class="detail__address">
-              {{ detailData.response.body.items.item[0].addr1 }}
-            </div>
-          </div>
-	        <div class="detail__description">
-            {{ detailData.response.body.items.item[0].overview }}
-	        </div>
-
-        </div>
-      </div>
-    </section>
-  </div>
+	<div class="content">
+		<section class="detail" v-if="info">
+			<h2 class="detail__title">
+				{{ info.title }}
+			</h2>
+			<div class="detail__address">
+				{{ info.addr1 }}
+			</div>
+			<div class="detail__buttons">
+				<a
+					:href="`https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${info.title}`"
+					target="_blank"
+				>
+					네이버 바로가기
+				</a>
+				<a
+					:href="`https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&q=${info.title}`"
+					target="_blank"
+				>
+					카카오 바로가기
+				</a>
+			</div>
+			<ul class="detail__images">
+				<li>
+					<img :src="info.firstimage" :alt="info.title">
+				</li>
+			</ul>
+			<p class="detail__description">
+				{{ info.overview }}
+			</p>
+			<p class="detail__homepage" v-html="info.homepage">
+			</p>
+		</section>
+	</div>
 </template>
 
-<script>
-import {mapState, mapGetters} from 'vuex'
-import Repository from '../api/RepositoryFactory'
+<script setup>
+import {ref, onMounted, inject} from "vue"
+import { useRoute } from 'vue-router'
 
-const PostRepository = Repository.get('posts')
-export default {
-  data() {
-    return {
-      detailData: null
-    }
-  },
-	async created() {
-		const res = await this.getDetail()
-		this.detailData = res;
-  },
-	 mounted() {
+const route = useRoute();
+const factories = inject("factories");
+const info = ref(null);
 
-	},
-  methods: {
-    toggleAge(age) {
-      this.currentAge = age;
-    },
-    async getDetail() {
-			try {
-				const id = this.$route.params.id;
-				const res = await PostRepository.getGameDetail(id)
-				const {status, data} = res;
-        console.log(data);
-				return data;
-			} catch(err) {
-				console.log(err);
-			}
-    },
-  }
+async function fetchData() {
+	const result = await factories.place.getPlaceDetail(route.params.id);
+	info.value = result.data.response.body.items.item[0];
 }
+
+onMounted(() => {
+	fetchData();
+})
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/css/_partial/_variables.scss";
+
+.detail {
+	&__title {
+		text-align:center;
+	}
+	&__buttons {
+		margin:20px 0;
+		padding-bottom:30px;
+		border-bottom:1px solid $BORDER_DEFAULT;
+		text-align:center;
+		a {
+			display:inline-block;
+			margin:0 10px;
+			padding:10px 20px;
+			border:1px solid $BORDER_DEFAULT;
+			font-weight:bold;
+		}
+	}
+	&__address {
+		margin:20px 0;
+		font-weight:bold;
+		text-align:center;
+	}
+	&__images {
+		text-align:center;
+	}
+	&__description {
+		margin:20px 0;
+		line-height:1.8;
+		word-break:keep-all;
+	}
+}
+</style>

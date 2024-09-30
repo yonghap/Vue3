@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div class="card" @click="goDetail(info.contentid)">
 		<div class="card__image"
 		     :style="{
 				backgroundImage : `url(${info.firstimage})`
@@ -16,9 +16,20 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
 const props = defineProps({
 	info : Object
 })
+function goDetail(id) {
+	router.push({
+		name: 'place',
+		params : {
+			id : id
+		}
+	})
+}
 </script>
 
 <style lang="scss" scoped>

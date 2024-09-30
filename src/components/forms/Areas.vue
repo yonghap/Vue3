@@ -2,8 +2,12 @@
 <template>
 	<div class="area">
 		<ul class="area__list">
-			<li v-for="area in areaInfo.areas" :key="area.id">
-		          <button type="button" :class='area.id === areaInfo.currentArea ? "area__button area__button--active" : "area__button"'>
+			<li v-for="area in areas" :key="area.id">
+		          <button
+			          type="button"
+			          :class='area.id === store.currentArea ? "area__button area__button--active" : "area__button"'
+			          @click="setArea(area.id)"
+		          >
 			          {{ area.name }}
 		          </button>
 			</li>
@@ -12,18 +16,21 @@
 </template>
 
 <script setup>
-import { reactive, onMounted, inject } from 'vue';
+import { ref, onMounted, inject } from 'vue';
+import {storeToRefs} from "pinia";
 import { useCommonStore } from '@/store/index'
 
 const store = useCommonStore();
+const { currentArea } = storeToRefs(store);
 const factories = inject("factories");
-const areaInfo = reactive({
-	areas : null,
-	currentArea : store.currentArea
-})
+const areas = ref(null);
+
+function setArea(id) {
+	store.updateArea(id);
+}
 
 async function fetchData() {
-	areaInfo.areas = await factories.area.getLocationList();
+	areas.value = await factories.area.getAreaList();
 }
 
 onMounted(() => {
