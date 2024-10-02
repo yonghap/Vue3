@@ -1,9 +1,9 @@
 <template>
 	<div class="content">
 		<section class="detail" v-if="info">
-			<h2 class="detail__title">
-				{{ info.title }}
-			</h2>
+            <h2 class="detail__title">
+                {{ info.title }}
+            </h2>
 			<div class="detail__address">
 				{{ info.addr1 }}
 			</div>
