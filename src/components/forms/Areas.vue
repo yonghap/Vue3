@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref, onMounted, inject } from 'vue';
-import {storeToRefs} from "pinia";
+import { storeToRefs } from "pinia";
 import { useCommonStore } from '@/store/index'
 
 const store = useCommonStore();

@@ -5,6 +5,7 @@
 				<Areas></Areas>
 			</div>
 			<div class="box">
+				<Arrange></Arrange>
 				<List></List>
 			</div>
 		</section>
@@ -13,5 +14,6 @@
 
 <script setup>
 import Areas from "@/components/forms/Areas.vue"
+import Arrange from "@/components/forms/Arrange.vue"
 import List from "@/components/Elements/List.vue"
 </script>

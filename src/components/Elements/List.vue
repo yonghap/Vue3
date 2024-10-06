@@ -13,19 +13,19 @@ import Card from "@/components/Elements/Card.vue"
 import { useCommonStore } from '@/store/index'
 
 const store = useCommonStore();
-const { currentArea } = storeToRefs(store);
+const { currentArea, currentArrange } = storeToRefs(store);
 const factories = inject("factories");
 const list = ref(null);
 
-watch(currentArea, () => {
-	fetchData(store.currentArea);
+watch( [currentArea, currentArrange], () => {
+	fetchData();
 	}, {
 		deep: true
 	}
 );
 
-async function fetchData(id = null) {
-	const result = await factories.place.getPlaceList(id);
+async function fetchData() {
+	const result = await factories.place.getPlaceList(store.currentArea, store.currentArrange);
 	list.value = result.data.response.body.items.item;
 }
 

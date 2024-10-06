@@ -1,7 +1,7 @@
 export default {
 	locationData: [
 		{
-			id: 0,
+			id: '',
 			name: '전체'
 		},
 		{
