@@ -21,7 +21,7 @@
 					카카오 바로가기
 				</a>
 			</div>
-			<ul class="detail__images">
+			<ul class="detail__images" v-if="info.firstimage">
 				<li>
 					<img :src="info.firstimage" :alt="info.title">
 				</li>

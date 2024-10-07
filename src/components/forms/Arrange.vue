@@ -23,7 +23,7 @@ import { storeToRefs } from "pinia";
 import { useCommonStore } from '@/store/index'
 
 const store = useCommonStore();
-const { currentArrange } = storeToRefs(store);
+const { currentArrange } = store;
 
 function setArrange(type) {
 	store.updateArrange(type);

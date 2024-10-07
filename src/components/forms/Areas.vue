@@ -21,7 +21,7 @@ import { storeToRefs } from "pinia";
 import { useCommonStore } from '@/store/index'
 
 const store = useCommonStore();
-const { currentArea } = storeToRefs(store);
+const { currentArea } = store;
 const factories = inject("factories");
 const areas = ref(null);
 
