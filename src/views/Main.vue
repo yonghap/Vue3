@@ -4,6 +4,7 @@
 			<div class="box">
 				<Areas></Areas>
 			</div>
+            <div></div>
 			<div class="box">
 				<Arrange></Arrange>
 				<List></List>
