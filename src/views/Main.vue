@@ -7,14 +7,8 @@
       <div></div>
       <div class="box">
         <Arrange></Arrange>
-        <Suspense>
-          <template #default>
-            <List></List>
-          </template>
-          <template #fallback>
-            <div>Loading...</div>
-          </template>
-        </Suspense>
+        <List></List>
+        <Loading></Loading>
       </div>
     </section>
   </div>
@@ -24,4 +18,5 @@
 import Areas from "@/components/forms/Areas.vue";
 import Arrange from "@/components/forms/Arrange.vue";
 import List from "@/components/Elements/List.vue";
+import Loading from "@/components/Elements/Loading.vue";
 </script>
