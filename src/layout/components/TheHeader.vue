@@ -1,7 +1,5 @@
 <template>
-	<header id="header" class="header">
-		<h1>
-			traveler
-		</h1>
-	</header>
+  <header id="header" class="header">
+    <h1>Traveler</h1>
+  </header>
 </template>

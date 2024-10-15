@@ -1,9 +1,12 @@
 <template>
-  <ul class="list">
-    <li v-for="item in list">
-      <Card :info="item"></Card>
-    </li>
-  </ul>
+  <div class="list-wrap">
+    <ul class="list">
+      <li v-for="item in list">
+        <Card :info="item"></Card>
+      </li>
+    </ul>
+    <Pagination></Pagination>
+  </div>
 </template>
 
 <script setup>
@@ -11,10 +14,11 @@ import { inject, onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useCommonStore } from "@/store/index";
 import Card from "@/components/Elements/Card.vue";
+import Pagination from "@/components/forms/Pagination.vue";
 
 const store = useCommonStore();
-const { currentArea, currentArrange } = storeToRefs(store);
 const factories = inject("factories");
+const { currentArea, currentArrange } = storeToRefs(store);
 const list = ref(null);
 
 const fetchData = async () => {
