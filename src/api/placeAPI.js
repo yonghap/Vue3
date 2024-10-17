@@ -9,7 +9,7 @@ export default () => ({
       "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?contentTypeId=12&serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=20&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json" +
       params;
     const result = await http.get(url);
-    return result.data.response.body.items.item;
+    return result.data.response.body;
   },
   getPlaceDetail(id) {
     return http.get(
